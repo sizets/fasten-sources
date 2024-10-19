@@ -25,10 +25,21 @@ test("CareEvolution Login Flow", async ({ page }, testInfo) => {
         await page.keyboard.type("CEPatient2018");
         await page.click("#login-button");
 
+
         // We have logged in
         await page.waitForSelector("text=Whose record do you want to allow access to?");
         // await expect(page).toHaveText("Authorization Request");
-        await page.locator("text=Fran Demoski (29)").click();
+
+
+        // Getting the name of user by its ID && Checks if the name contains that nameSubstring 
+        const nameSubstring = "Fran Demoski";
+        const userName = await page.evaluate((nameSubstring) => {
+            const element = document.getElementById("1deda6e4-3121-e611-8128-0a69c1b3225b");
+            return element && element.innerText.includes(nameSubstring) ? element.innerText : null;
+        }, nameSubstring);
+
+
+        await page.locator(`text=${userName}`).click();
         await page.click('input[value="Agree"]');
 
         // If successful, Fasten Lighthouse page should now be visible
