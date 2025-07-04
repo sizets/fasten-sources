@@ -5,13 +5,6 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"github.com/fastenhealth/fasten-sources/clients/client_auth_method"
-	"github.com/fastenhealth/fasten-sources/clients/models"
-	definitionsModels "github.com/fastenhealth/fasten-sources/definitions/models"
-	"github.com/fastenhealth/fasten-sources/pkg"
-	"github.com/sirupsen/logrus"
-	"golang.org/x/exp/slices"
-	"golang.org/x/oauth2"
 	"io"
 	"log"
 	"mime"
@@ -22,6 +15,14 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/fastenhealth/fasten-sources/clients/client_auth_method"
+	"github.com/fastenhealth/fasten-sources/clients/models"
+	definitionsModels "github.com/fastenhealth/fasten-sources/definitions/models"
+	"github.com/fastenhealth/fasten-sources/pkg"
+	"github.com/sirupsen/logrus"
+	"golang.org/x/exp/slices"
+	"golang.org/x/oauth2"
 )
 
 type SourceClientBase struct {
@@ -98,6 +99,8 @@ func NewBaseClient(env pkg.FastenLighthouseEnvType, ctx context.Context, globalL
 		},
 		SourceClientOptions: clientOptions,
 	}
+
+	client.EnforceSafeConcurrencyLimit()
 
 	if client.SourceClientOptions.TestHttpClient != nil {
 		//Testing mode.
@@ -376,4 +379,16 @@ func isContentTypeJsonAnalog(contentType string) bool {
 		return false
 	}
 	return slices.Contains([]string{"application/json", "application/fhir+json", "application/json+fhir"}, mediatype)
+}
+
+func (c *SourceClientBase) EnforceSafeConcurrencyLimit() {
+	if c.SourceClientOptions == nil {
+		return
+	}
+	if c.SourceClientOptions.Concurrency < 1 {
+		c.SourceClientOptions.Concurrency = 1
+	}
+	if c.SourceClientOptions.Concurrency > 5 {
+		c.SourceClientOptions.Concurrency = 5
+	}
 }

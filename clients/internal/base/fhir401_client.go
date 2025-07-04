@@ -241,12 +241,6 @@ func (c *SourceClientFHIR401) ProcessPendingResources(
 
 	// Ensure goRoutineLimit is between 1 and 5
 	goRoutineLimit := c.SourceClientOptions.Concurrency
-	if goRoutineLimit < 1 {
-		goRoutineLimit = 1
-	}
-	if goRoutineLimit > 5 {
-		goRoutineLimit = 5
-	}
 
 	g, _ := errgroup.WithContext(context.Background())
 	g.SetLimit(goRoutineLimit)
