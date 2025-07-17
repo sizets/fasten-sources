@@ -214,8 +214,28 @@ export default {
       use: {
         connectOptions: { wsEndpoint: getCdpEndpoint('chrome@latest:Windows 11', 'united-healthcare') },
       },
+    },
+    {
+      name: 'advancedmd',
+      testMatch: /.*advancedmd_test.ts/,
+      use: {
+        connectOptions: { wsEndpoint: getCdpEndpoint('chrome@latest:Windows 11', 'advancedmd') },
+      },
+    },
+    {
+      name: 'qualifacts-credible',
+      testMatch: /.*qualifacts_credible_test.ts/,
+      use: {
+        connectOptions: { wsEndpoint: getCdpEndpoint('chrome@latest:Windows 11', 'qualifacts-credible') },
+      },
+    },
+    {
+      name: 'anthem',
+      testMatch: /.*anthem_test.ts/,
+      use: {
+        connectOptions: { wsEndpoint: getCdpEndpoint('chrome@latest:Windows 11', 'anthem') },
+      },
     }
-
     // {
     //   name: 'playwright-webkit@latest:OSX Ventura',
     //   use: {
@@ -228,7 +248,7 @@ export default {
     //     connectOptions: { wsEndpoint: getCdpEndpoint('playwright-firefox:Windows 11', 'test3') }
     //   },
     // }
-    ,{
+    , {
       name: 'wip',
       testMatch: /.*practicefusion_test.ts/,
       use: { ...devices['Desktop Chrome'] },
