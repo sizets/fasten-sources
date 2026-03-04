@@ -78,10 +78,26 @@ body:
   - type: checkboxes
     id: client-options-status
     attributes:
-      label: Platform client Options Readiness Checklist
-      description: This checklist is used to track the status of an EHR platform, and how ready/compliant it's Patient Access APIs are
+      label: Platform Client Options Readiness Checklist
+      description: This checklist is used to track the status of an EHR platform and how ready/compliant its Patient Access APIs are
       options:
-        - label: developer documentation
+        - label: "GET {fhirBase}/Patient/{patientId}/$everything — Tested"
+        - label: "GET {fhirBase}/Patient/{patientId}/$everything — Enabled"
+
+        - label: "GET {fhirBase}/Patient/{patientId}/$export — Tested"
+        - label: "GET {fhirBase}/Patient/{patientId}/$export — Enabled"
+
+        - label: "GET {fhirBase}/Patient/$export?patientId={patientId} — Tested"
+        - label: "GET {fhirBase}/Patient/$export?patientId={patientId} — Enabled"
+
+        - label: "GET {fhirBase}/Patient/{patientId}/$everything?_outputFormat=ndjson — Tested"
+        - label: "GET {fhirBase}/Patient/{patientId}/$everything?_outputFormat=ndjson — Enabled"
+
+        - label: "GET {fhirBase}/Patient/{patientId}/$export?_outputFormat=ndjson — Tested"
+        - label: "GET {fhirBase}/Patient/{patientId}/$export?_outputFormat=ndjson — Enabled"
+
+        - label: "GET {fhirBase}/Patient/$export?patientId={patientId}&_outputFormat=ndjson — Tested"
+        - label: "GET {fhirBase}/Patient/$export?patientId={patientId}&_outputFormat=ndjson — Enabled"
   - type: checkboxes
     id: status
     attributes:
