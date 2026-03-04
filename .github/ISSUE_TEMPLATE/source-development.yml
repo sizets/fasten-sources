@@ -75,29 +75,43 @@ body:
       description: Please enter a working Fasten Sources definition for this EHR
     validations:
       required: false
-  - type: checkboxes
-    id: client-options-status
+  - type: markdown
     attributes:
-      label: Platform Client Options Readiness Checklist
-      description: This checklist is used to track the status of an EHR platform and how ready/compliant its Patient Access APIs are
+      value: |
+        ### Patient Access Endpoint Support
+
+        | Endpoint | Tested | Enabled |
+        |---------|--------|--------|
+        | $everything | ☐ | ☐ |
+        | $export | ☐ | ☐ |
+        | $export (patientId) | ☐ | ☐ |
+        | $everything (ndjson) | ☐ | ☐ |
+        | $export (ndjson) | ☐ | ☐ |
+        | $export patientId (ndjson) | ☐ | ☐ |
+
+        Please mark the checkboxes below instead of the table above.
+  - type: checkboxes
+    id: patient-access-tested
+    attributes:
+      label: Endpoints Tested
       options:
-        - label: "GET {fhirBase}/Patient/{patientId}/$everything — Tested"
-        - label: "GET {fhirBase}/Patient/{patientId}/$everything — Enabled"
-
-        - label: "GET {fhirBase}/Patient/{patientId}/$export — Tested"
-        - label: "GET {fhirBase}/Patient/{patientId}/$export — Enabled"
-
-        - label: "GET {fhirBase}/Patient/$export?patientId={patientId} — Tested"
-        - label: "GET {fhirBase}/Patient/$export?patientId={patientId} — Enabled"
-
-        - label: "GET {fhirBase}/Patient/{patientId}/$everything?_outputFormat=ndjson — Tested"
-        - label: "GET {fhirBase}/Patient/{patientId}/$everything?_outputFormat=ndjson — Enabled"
-
-        - label: "GET {fhirBase}/Patient/{patientId}/$export?_outputFormat=ndjson — Tested"
-        - label: "GET {fhirBase}/Patient/{patientId}/$export?_outputFormat=ndjson — Enabled"
-
-        - label: "GET {fhirBase}/Patient/$export?patientId={patientId}&_outputFormat=ndjson — Tested"
-        - label: "GET {fhirBase}/Patient/$export?patientId={patientId}&_outputFormat=ndjson — Enabled"
+        - label: "$everything"
+        - label: "$export"
+        - label: "$export (patientId)"
+        - label: "$everything (ndjson)"
+        - label: "$export (ndjson)"
+        - label: "$export patientId (ndjson)"
+  - type: checkboxes
+    id: patient-access-enabled
+    attributes:
+      label: Endpoints Enabled
+      options:
+        - label: "$everything"
+        - label: "$export"
+        - label: "$export (patientId)"
+        - label: "$everything (ndjson)"
+        - label: "$export (ndjson)"
+        - label: "$export patientId (ndjson)"
   - type: checkboxes
     id: status
     attributes:
