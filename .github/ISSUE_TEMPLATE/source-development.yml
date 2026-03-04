@@ -78,40 +78,50 @@ body:
   - type: markdown
     attributes:
       value: |
-        ### Patient Access Endpoint Support
-
-        | Endpoint | Tested | Enabled |
-        |---------|--------|--------|
-        | $everything | ☐ | ☐ |
-        | $export | ☐ | ☐ |
-        | $export (patientId) | ☐ | ☐ |
-        | $everything (ndjson) | ☐ | ☐ |
-        | $export (ndjson) | ☐ | ☐ |
-        | $export patientId (ndjson) | ☐ | ☐ |
-
-        Please mark the checkboxes below instead of the table above.
+        ## Patient Access Endpoint Support
+        Mark the status for each supported Patient Access operation.
   - type: checkboxes
-    id: patient-access-tested
+    id: endpoint-everything
     attributes:
-      label: Endpoints Tested
+      label: "$everything"
       options:
-        - label: "$everything"
-        - label: "$export"
-        - label: "$export (patientId)"
-        - label: "$everything (ndjson)"
-        - label: "$export (ndjson)"
-        - label: "$export patientId (ndjson)"
+        - label: Tested
+        - label: Enabled
   - type: checkboxes
-    id: patient-access-enabled
+    id: endpoint-export
     attributes:
-      label: Endpoints Enabled
+      label: "$export"
       options:
-        - label: "$everything"
-        - label: "$export"
-        - label: "$export (patientId)"
-        - label: "$everything (ndjson)"
-        - label: "$export (ndjson)"
-        - label: "$export patientId (ndjson)"
+        - label: Tested
+        - label: Enabled
+  - type: checkboxes
+    id: endpoint-export-patient
+    attributes:
+      label: "$export (patientId)"
+      options:
+        - label: Tested
+        - label: Enabled
+  - type: checkboxes
+    id: endpoint-everything-ndjson
+    attributes:
+      label: "$everything (ndjson)"
+      options:
+        - label: Tested
+        - label: Enabled
+  - type: checkboxes
+    id: endpoint-export-ndjson
+    attributes:
+      label: "$export (ndjson)"
+      options:
+        - label: Tested
+        - label: Enabled
+  - type: checkboxes
+    id: endpoint-export-patient-ndjson
+    attributes:
+      label: "$export (patientId, ndjson)"
+      options:
+        - label: Tested
+        - label: Enabled
   - type: checkboxes
     id: status
     attributes:
